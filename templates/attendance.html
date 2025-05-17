@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}Attendance{% endblock %}
+
+{% block content %}
+  <h2>Attendance</h2>
+
+  <style>
+    form select,
+    form button {
+        background-color: #203864;  /* deep blue */
+        color: white;
+        border: 1px solid #ccc;
+        padding: 8px;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+
+    form button {
+        cursor: pointer;
+    }
+
+    form button:hover {
+        background-color: #335080;  /* lighter deep blue on hover */
+    }
+  </style>
+
+  <form method="POST">
+      <select name="student_id" required>
+          {% for student in students %}
+              <option value="{{ student.id }}">{{ student.name }}</option>
+          {% endfor %}
+      </select>
+
+      <select name="course_id" required>
+          {% for course in courses %}
+              <option value="{{ course.id }}">{{ course.title }}</option>
+          {% endfor %}
+      </select>
+
+      <select name="status" required>
+          <option value="Present">Present</option>
+          <option value="Absent">Absent</option>
+      </select>
+
+      <button type="submit">Mark Attendance</button>
+  </form>
+
+  <table>
+      <thead>
+          <tr>
+              <th>Student</th>
+              <th>Course</th>
+              <th>Status</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for a in attendance %}
+              <tr>
+                  <td>{{ a.student.name }}</td>
+                  <td>{{ a.course.title }}</td>
+                  <td>{{ a.status }}</td>
+              </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+{% endblock %}

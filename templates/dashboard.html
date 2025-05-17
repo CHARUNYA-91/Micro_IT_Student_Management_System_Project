@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+    <h2>Admin Dashboard</h2>
+    <div class="dashboard-grid">
+        <a href="{{ url_for('manage_students') }}" class="dashboard-link">👨‍🎓 Manage Students</a>
+        <a href="{{ url_for('manage_courses') }}" class="dashboard-link">📚 Manage Courses</a>
+        <a href="{{ url_for('manage_enrollments') }}" class="dashboard-link">🔗 Manage Enrollments</a>
+        <a href="{{ url_for('manage_attendance') }}" class="dashboard-link">✅ Manage Attendance</a>
+        <a href="{{ url_for('manage_grades') }}" class="dashboard-link">🎯 Manage Grades</a>
+    </div>
+
+    <style>
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .dashboard-link {
+            display: block;
+            padding: 1.5rem;
+            background-color: #1b2e5c;
+            border-radius: 12px;
+            color: #a8d0e6;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-decoration: none;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .dashboard-link:hover {
+            background-color: #254080;
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+    </style>
+{% endblock %}

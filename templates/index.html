@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Welcome{% endblock %}
+{% block content %}
+    <div class="welcome-box">
+        <h2>🎓 Welcome to the Student Management System</h2>
+        {% if current_user.is_authenticated %}
+            <p>Hello, {{ current_user.username }}!</p>
+            <a href="{{ url_for('dashboard') }}"><button class="action-button">Go to Dashboard</button></a>
+        {% else %}
+            <p>Please log in to continue.</p>
+            <a href="{{ url_for('login') }}"><button class="action-button">Login</button></a>
+        {% endif %}
+    </div>
+
+    <style>
+        .welcome-box {
+            text-align: center;
+            padding: 3rem 2rem;
+            background-color: #102b6e;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .welcome-box h2 {
+            color: #a8d0e6;
+            margin-bottom: 1rem;
+        }
+
+        .welcome-box p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .action-button {
+            padding: 0.7rem 1.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            background-color: #1b2e5c;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .action-button:hover {
+            background-color: #254080;
+            transform: scale(1.05);
+        }
+    </style>
+{% endblock %}
